@@ -65,7 +65,7 @@ out = p.communicate()[0].decode('UTF-8')
 using_GPU = out != ''
 
 if not slim_package:
-    install_requires.append('tensorflow>=1.9.0,<=1.14.0')
+    install_requires.append('tensorflow<2.0.0')
 if not using_GPU:
     extras['mxnet'] = ['mxnet-mkl>=1.3.0']
 else:
