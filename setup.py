@@ -64,13 +64,11 @@ p = subprocess.Popen(['command -v nvidia-smi'], stdout=subprocess.PIPE, shell=Tr
 out = p.communicate()[0].decode('UTF-8')
 using_GPU = out != ''
 
+if not slim_package:
+    install_requires.append('tensorflow>=1.9.0,<=1.14.0')
 if not using_GPU:
-    if not slim_package:
-        install_requires.append('tensorflow>=1.9.0,<=1.14.0')
     extras['mxnet'] = ['mxnet-mkl>=1.3.0']
 else:
-    if not slim_package:
-        install_requires.append('tensorflow-gpu>=1.9.0,<=1.14.0')
     extras['mxnet'] = ['mxnet-cu90mkl>=1.3.0']
 
 all_deps = []
